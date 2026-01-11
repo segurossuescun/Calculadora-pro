@@ -1,5 +1,5 @@
 require("dotenv").config();
-console.log(">>> AQUI LEE DATABASE_URL:", process.env.DATABASE_URL);
+console.log("✅ API starting...");
 
 const express = require("express");
 const cors = require("cors");
@@ -15,6 +15,9 @@ app.use(express.json());
 // 🔌 Neon pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL
+});
+app.get("/", (req, res) => {
+  res.send("✅ Calculadora Pro API running. Usa /health");
 });
 
 // ✅ Health check
