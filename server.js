@@ -61,7 +61,7 @@ app.post("/webhook/stripe", express.raw({ type: "application/json" }), async (re
 // ✅ JSON para el resto de rutas
 app.use(express.json());
 
-app.get("/", (req, res) => res.send("✅ Calculadora Pro API running. Usa /health"));
+app.get("/", (req, res) => res.send("✅ API running - VERSION A1"));
 
 app.get("/health", async (req, res) => {
   try {
@@ -75,3 +75,7 @@ app.get("/health", async (req, res) => {
 // 🚀 Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🔥 Calculadora Pro backend corriendo en http://localhost:${PORT}`));
+app.post("/webhook/stripe-test", express.json(), (req, res) => {
+  console.log("🧪 HIT stripe-test", req.body);
+  res.json({ ok: true });
+});
